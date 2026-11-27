@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#3a2414">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="author" content="Birdmeister17">
+<title>Tidewright (working title)</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Level select / title -->
+<section id="menu" class="screen">
+  <header class="menu-head">
+    <img class="logo" data-art="tidewright_logotype" alt="Tidewright">
+    <p class="tagline">Lay channels to carry spring water to the dry fields before the tide turns.</p>
+  </header>
+  <div id="levelGrid" class="level-grid"></div>
+  <footer class="menu-foot">
+    <button id="soundBtn" class="btn-wood small">Sound: on</button>
+    <span class="credit">A game by Birdmeister17</span>
+  </footer>
+</section>
+
+<!-- Level -->
+<section id="game" class="screen hidden">
+  <header class="status">
+    <div class="status-row">
+      <button id="backBtn" class="round-btn" aria-label="Back to levels">&#8249;</button>
+      <div class="title-block"><div id="lvlTitle" class="lvl-title"></div><div id="lvlIdea" class="lvl-idea"></div></div>
+      <button id="resetBtn" class="art-btn small" aria-label="Reset"><img data-art="btn_reset" alt=""></button>
+    </div>
+    <div class="plates">
+      <div class="plate" id="tilesPlate"><img class="plate-bg" data-art="ui_hud_counter_plate" alt=""><img class="plate-icon" data-art="ui_icon_tiles" alt="">
+        <div class="plate-text"><span class="plate-label">Tiles</span><span id="tilesVal" class="plate-val"></span></div></div>
+      <div class="plate" id="wastePlate"><img class="plate-bg" data-art="ui_hud_counter_plate" alt=""><img class="plate-icon" data-art="ui_icon_waste" alt="">
+        <div class="plate-text"><span class="plate-label">Waste</span><span id="wasteVal" class="plate-val"></span></div></div>
+    </div>
+    <div class="gauge" id="gauge">
+      <div class="gauge-window"><div id="gaugeFill" class="gauge-fill"><img data-art="ui_tide_gauge_fill" alt=""></div></div>
+      <img class="gauge-frame" data-art="ui_tide_gauge_frame" alt="">
+      <img id="gaugeLine" class="gauge-line" data-art="ui_tide_line" alt="">
+      <img class="gauge-moon" data-art="ui_tide_turn_marker" alt="">
+      <div id="tideText" class="gauge-text"></div>
+    </div>
+    <div class="hint-row"><div id="hintChip" class="hint-chip hidden"><img data-art="ui_warning_chip" alt=""><span id="hintText"></span></div></div>
+  </header>
+
+  <main id="boardWrap" class="board-wrap">
+    <canvas id="board"></canvas>
+  </main>
+
+  <footer class="dock">
+    <div id="tray" class="tray"></div>
+    <div id="planBar" class="dock-row">
+      <button id="undoBtn" class="art-btn"><img data-art="btn_undo" alt=""><span class="cap">Undo</span></button>
+      <button id="redoBtn" class="art-btn"><img data-art="btn_redo" alt=""><span class="cap">Redo</span></button>
+      <span class="spacer"></span>
+      <button id="releaseBtn" class="art-btn release"><img data-art="btn_release" alt=""><span class="cap">Release</span></button>
+    </div>
+    <div id="runBar" class="dock-row run hidden">
+      <button id="fastBtn" class="art-btn"><img data-art="btn_fast" alt=""><span id="fastCap" class="cap">Fast &times;3</span></button>
+      <button id="skipBtn" class="art-btn"><img data-art="btn_skip" alt=""><span class="cap">Skip</span></button>
+      <button id="stopBtn" class="art-btn"><img data-art="btn_stop" alt=""><span class="cap">Stop</span></button>
+    </div>
+  </footer>
+
+  <!-- Long-press info card (tile speed and rules) -->
+  <div id="speedInfo" class="speed-info hidden"></div>
+
+  <div id="result" class="overlay hidden">
+    <div class="res-panel">
+      <img class="res-bg" data-art="ui_result_panel" alt="">
+      <div id="resTitle" class="res-title"></div>
+      <div id="resSub" class="res-sub"></div>
+      <div id="resStarsBox" class="res-stars">
+        <img id="resFrame" class="res-frame" data-art="ui_perfect_frame_gold" alt="">
+        <div id="resStars" class="res-star-row"></div>
+      </div>
+      <div id="resLines" class="res-lines"></div>
+      <div class="res-btns">
+        <button id="resRetry" class="btn-wood">Retry</button>
+        <button id="resNext" class="btn-wood primary">Next</button>
+        <button id="resLevels" class="btn-wood">Levels</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirm" class="overlay hidden">
+    <div class="res-panel">
+      <img class="res-bg" data-art="ui_result_panel" alt="">
+      <div class="res-title">Reset?</div>
+      <div id="confirmText" class="res-sub confirm-text"></div>
+      <div class="res-btns confirm-btns">
+        <button id="confirmYes" class="btn-wood primary">Reset</button>
+        <button id="confirmNo" class="btn-wood">Cancel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<canvas id="ghost" class="ghost hidden"></canvas>
+
+<script src="assets/manifest.js"></script>
+<script src="js/tuning.js"></script>
+<script src="js/levels.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/art.js"></script>
+<script src="js/store.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
